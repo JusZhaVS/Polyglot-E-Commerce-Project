@@ -243,18 +243,5 @@ Potential additions to extend the platform:
 - [**API Documentation**](docs/API.md) - REST API endpoint reference
 - **Component READMEs**: Each service includes its own documentation
 
-## Contributing
-
-This project serves as a portfolio demonstration, but contributions and suggestions are welcome! Please feel free to:
-- Report issues or bugs
-- Suggest new features
-- Improve documentation
-- Add test coverage
-
-## License
-
-This project is available under the MIT License. See LICENSE file for details.
-
 ---
 
-**Built to demonstrate modern full-stack development skills across multiple technologies and architectural patterns.**
