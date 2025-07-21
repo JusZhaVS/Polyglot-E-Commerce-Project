@@ -128,15 +128,22 @@ docker-compose up -d
 
 ## Technology Stack
 
-| Component | Technologies |
-|-----------|-------------|
-| **Frontend** | React 18, Angular 15+, TypeScript, Material-UI, Angular Material |
-| **Backend** | Java Spring Boot 3, Ruby on Rails 7 |
-| **Database** | PostgreSQL 15 |
-| **Authentication** | JWT (JSON Web Tokens) |
-| **API** | RESTful services with JSON |
-| **Containerization** | Docker, Docker Compose |
-| **Build Tools** | Maven, npm, Webpack |
+**Frontend:**
+- React 18 with TypeScript for the customer storefront
+- Angular 15+ with TypeScript for the admin dashboard
+- Material-UI for React components
+- Angular Material for admin interface
+
+**Backend:**
+- Java Spring Boot 3 for the main API
+- Ruby on Rails 7 for the CMS
+- PostgreSQL 15 for both databases
+
+**Other stuff:**
+- JWT tokens for authentication
+- RESTful APIs with JSON
+- Docker for containerization
+- Maven for Java builds, npm for frontend builds
 
 ## Sample Data
 
