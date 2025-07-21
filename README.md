@@ -1,6 +1,6 @@
 # Polyglot E-Commerce Platform
 
-A comprehensive, feature-rich e-commerce platform showcasing modern microservices architecture and demonstrating proficiency across multiple technologies. This project serves as an excellent portfolio piece for full-stack developers, highlighting skills in Java, JavaScript, Ruby, and modern frameworks.
+A comprehensive, feature-rich e-commerce platform built on modern microservices architectures and using Java, JavaScript, Ruby, and modern frameworks.
 
 ## Project Highlights
 
