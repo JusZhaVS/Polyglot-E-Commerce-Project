@@ -14,26 +14,25 @@ This platform demonstrates:
 
 ## Architecture Overview
 
+The system is built with a microservices approach where different technologies handle specific responsibilities:
+
+**Frontend Layer:**
+- React.js Customer Storefront (port 3000) -> handles customer shopping experience
+- Angular Admin Dashboard (port 4200) -> manages admin operations
+- Rails CMS (port 3001) -> provides blog content API
+
+**Backend Layer:**
+- Java Spring Boot API (port 8080) -> core business logic for products, orders, users
+
+**Data Layer:**
+- PostgreSQL Main Database -> stores e-commerce data (products, orders, users)
+- PostgreSQL CMS Database -> stores blog content (posts, authors, comments)
+
+**Data Flow:**
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   React.js      │    │   Angular       │    │   Rails CMS     │
-│   Storefront    │    │   Admin Panel   │    │   Blog API      │
-│   Port: 3000    │    │   Port: 4200    │    │   Port: 3001    │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                        │                        │
-         └────────────────────────┼────────────────────────┘
-                                  │
-                     ┌─────────────────┐
-                     │   Java Spring   │
-                     │   Boot Core API │
-                     │   Port: 8080    │
-                     └─────────────────┘
-                              │
-                    ┌─────────┴─────────┐
-           ┌─────────────────┐ ┌─────────────────┐
-           │   PostgreSQL    │ │   PostgreSQL    │
-           │   Main DB       │ │   CMS DB        │
-           └─────────────────┘ └─────────────────┘
+Customer Frontend (React) --> Spring Boot API --> Main PostgreSQL DB
+Admin Frontend (Angular) --> Spring Boot API --> Main PostgreSQL DB
+Both Frontends --> Rails CMS API --> CMS PostgreSQL DB (for blog content)
 ```
 
 ### Core Components
