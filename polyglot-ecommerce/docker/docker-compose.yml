@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ecommerce_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ecommerce-network
+
+  # PostgreSQL for CMS
+  postgres-cms:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: cms_rails_development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_cms_data:/var/lib/postgresql/data
+    networks:
+      - ecommerce-network
+
+  # Java Spring Boot Backend
+  backend-java:
+    build:
+      context: ../backend-java
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/ecommerce_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    depends_on:
+      - postgres
+    networks:
+      - ecommerce-network
+
+  # React Frontend
+  frontend-react:
+    build:
+      context: ../frontend-react
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8080/api
+      - REACT_APP_CMS_URL=http://localhost:3001/api/v1
+    depends_on:
+      - backend-java
+    networks:
+      - ecommerce-network
+
+  # Angular Admin Dashboard
+  admin-angular:
+    build:
+      context: ../admin-angular
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    environment:
+      - API_URL=http://localhost:8080/api
+    depends_on:
+      - backend-java
+    networks:
+      - ecommerce-network
+
+  # Ruby on Rails CMS
+  cms-rails:
+    build:
+      context: ../cms-rails
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres-cms:5432/cms_rails_development
+    depends_on:
+      - postgres-cms
+    networks:
+      - ecommerce-network
+
+volumes:
+  postgres_data:
+  postgres_cms_data:
+
+networks:
+  ecommerce-network:
+    driver: bridge

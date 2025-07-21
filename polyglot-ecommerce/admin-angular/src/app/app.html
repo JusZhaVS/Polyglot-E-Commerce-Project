@@ -1,0 +1,44 @@
+<div class="app-container" *ngIf="authService.isAuthenticated(); else loginOnly">
+  <mat-toolbar color="primary" class="app-toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{ title }}</span>
+    <span class="spacer"></span>
+    <button mat-button (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" opened class="sidenav">
+      <mat-nav-list>
+        <mat-list-item (click)="navigateTo('/dashboard')">
+          <mat-icon matListItemIcon>dashboard</mat-icon>
+          <span matListItemTitle>Dashboard</span>
+        </mat-list-item>
+        <mat-list-item (click)="navigateTo('/products')">
+          <mat-icon matListItemIcon>inventory</mat-icon>
+          <span matListItemTitle>Products</span>
+        </mat-list-item>
+        <mat-list-item (click)="navigateTo('/orders')">
+          <mat-icon matListItemIcon>shopping_cart</mat-icon>
+          <span matListItemTitle>Orders</span>
+        </mat-list-item>
+        <mat-list-item (click)="navigateTo('/users')">
+          <mat-icon matListItemIcon>people</mat-icon>
+          <span matListItemTitle>Users</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<ng-template #loginOnly>
+  <router-outlet></router-outlet>
+</ng-template>
