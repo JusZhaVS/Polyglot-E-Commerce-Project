@@ -75,7 +75,10 @@ Both Frontends --> Rails CMS API --> CMS PostgreSQL DB (for blog content)
 - PostgreSQL 15+
 - Docker & Docker Compose (optional)
 
-### Option 1: Automated Setup (Recommended)
+
+There are two ways to set up everything. You can either use the automated setup, or use Docker to deploy.
+
+### Option 1: Automated Setup
 ```bash
 git clone <repository-url>
 cd polyglot-ecommerce/scripts
