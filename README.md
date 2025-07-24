@@ -1,4 +1,4 @@
-# Polyglot E-Commerce Platform
+# E-Commerce Platform Designed for Polyglots
 
 A comprehensive, feature-rich e-commerce platform built on modern microservices architectures and using Java, JavaScript, Ruby, and modern frameworks.
 
